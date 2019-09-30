@@ -9,8 +9,11 @@ import (
 func main() {
 	resp, err := http.Get("https://www.google.com/")
 	if err != nil {
-		fmt.Printf("Error, %v \n", err)
+		fmt.Printf("Error, %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Println(resp)
+
+	bs := make([]byte, 99999)
+	resp.Body.Read(bs)
+	fmt.Println(string(bs))
 }
